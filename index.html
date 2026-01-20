@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Sky Girl ☁</title>
+    <style>
+         :root {
+            --sky-blue: #a2d2ff;
+            --cloud-white: #f0f8ff;
+            --soft-pink: #ffafcc;
+        }
+        
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--cloud-white);
+            color: #333;
+            text-align: center;
+        }
+        
+        header {
+            background-color: var(--sky-blue);
+            padding: 40px 15px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            min-height: auto;
+        }
+        
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,50 Q300,0 600,50 T1200,50 L1200,120 L0,120 Z" fill="%23f0f8ff"/></svg>');
+            background-size: 100% 100%;
+            background-repeat: repeat-x;
+            animation: wave 15s linear infinite;
+        }
+        
+        @keyframes wave {
+            0% {
+                background-position: 0 0;
+            }
+            100% {
+                background-position: 100% 0;
+            }
+        }
+        
+        header>* {
+            position: relative;
+            z-index: 1;
+        }
+        
+        h1 {
+            margin: 0;
+            font-size: clamp(1.5em, 5vw, 2.5em);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        p {
+            font-style: italic;
+            font-size: clamp(0.9em, 2.5vw, 1em);
+            margin: 10px 0;
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: clamp(15px, 4vw, 30px);
+            padding: clamp(15px, 5vw, 40px);
+            max-width: 1200px;
+            margin: auto;
+        }
+        
+        .photo-card {
+            background: white;
+            padding: clamp(8px, 2vw, 15px);
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .photo-card:hover {
+            transform: scale(1.05) rotate(2deg);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .photo-card img {
+            width: 100%;
+            height: 220px;
+            border-radius: 10px;
+            display: block;
+            object-fit: cover;
+        }
+        
+        .photo-card p {
+            font-size: clamp(0.85em, 2vw, 0.95em);
+            margin-top: 10px;
+        }
+        
+        .upload-section {
+            background-color: var(--sky-blue);
+            color: white;
+            padding: clamp(30px, 8vw, 50px) clamp(20px, 5vw, 40px);
+            margin-top: clamp(30px, 5vw, 50px);
+        }
+        
+        .upload-section h2 {
+            font-size: clamp(1.3em, 4vw, 2em);
+            margin: clamp(10px, 2vw, 20px) 0;
+        }
+        
+        .upload-section p {
+            font-size: clamp(0.9em, 2.5vw, 1.1em);
+        }
+        
+        .btn-upload {
+            background-color: white;
+            color: var(--sky-blue);
+            padding: clamp(12px, 2vw, 15px) clamp(25px, 4vw, 35px);
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: clamp(15px, 3vw, 25px);
+            transition: all 0.3s ease;
+            font-size: clamp(0.9em, 2.5vw, 1em);
+            border: 2px solid white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-upload::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background-color: rgba(255, 175, 204, 0.6);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+        }
+        
+        .btn-upload:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+        
+        .btn-upload:hover {
+            background-color: var(--soft-pink);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2), 0 0 30px rgba(255, 175, 204, 0.4);
+        }
+        
+        .btn-upload>* {
+            position: relative;
+            z-index: 1;
+        }
+        
+        footer {
+            padding: clamp(15px, 3vw, 25px);
+            font-size: clamp(0.75em, 1.5vw, 0.9em);
+            color: #888;
+            margin-top: clamp(20px, 5vw, 40px);
+        }
+        /* Animasi Awan Sederhana */
+        
+        .cloud {
+            position: absolute;
+            z-index: -1;
+            opacity: 0.5;
+        }
+        /* Media Queries untuk Tablet */
+        
+        @media (max-width: 768px) {
+            header {
+                padding: clamp(30px, 5vw, 50px) 15px;
+            }
+            .gallery {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+        }
+        /* Animasi Love Jatuh */
+        
+        .falling-love {
+            position: fixed;
+            top: -50px;
+            font-size: 2em;
+            opacity: 0.8;
+            animation: fall linear forwards;
+            pointer-events: none;
+            z-index: 999;
+        }
+        
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        /* Media Queries untuk Mobile */
+        
+        @media (max-width: 480px) {
+            header {
+                padding: 25px 12px;
+            }
+            header::after {
+                height: 50px;
+            }
+            h1 {
+                font-size: 1.5em;
+            }
+            p {
+                font-size: 0.9em;
+                margin: 8px 0;
+            }
+            .gallery {
+                grid-template-columns: 1fr;
+                gap: 12px;
+                padding: 12px;
+                margin: 0;
+            }
+            .photo-card {
+                padding: 8px;
+                border-radius: 12px;
+            }
+            .photo-card img {
+                height: 200px;
+                border-radius: 8px;
+            }
+            .photo-card p {
+                font-size: 0.85em;
+                margin-top: 8px;
+            }
+            .upload-section {
+                padding: 25px 12px;
+                margin-top: 20px;
+            }
+            .upload-section h2 {
+                font-size: 1.2em;
+                margin: 10px 0;
+            }
+            .upload-section p {
+                font-size: 0.85em;
+                margin: 8px 0;
+            }
+            .btn-upload {
+                width: 100%;
+                box-sizing: border-box;
+                padding: 12px 20px;
+                font-size: 0.9em;
+                margin-top: 15px;
+                border-radius: 20px;
+            }
+            .btn-upload::before {
+                width: 0;
+                height: 0;
+            }
+            .btn-upload:active::before {
+                width: 200px;
+                height: 200px;
+            }
+            footer {
+                padding: 12px 10px;
+                font-size: 0.75em;
+                margin-top: 20px;
+            }
+            .falling-love {
+                font-size: 1.5em;
+            }
+        }
+        
+        @media (max-width: 360px) {
+            h1 {
+                font-size: 1.3em;
+            }
+            .gallery {
+                padding: 10px;
+                gap: 10px;
+            }
+            .photo-card img {
+                height: 180px;
+            }
+            .upload-section {
+                padding: 20px 10px;
+            }
+            .btn-upload {
+                font-size: 0.85em;
+                padding: 10px 18px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Halo Cantikku! ✨</h1>
+        <p>"Kamu adalah langit biruku di hari yang mendung."</p>
+    </header>
+
+    <main>
+        <section class="gallery">
+            <div class="photo-card">
+                <img src="poto.jpg" alt="Foto Lucu 1">
+                <p>Senyum favoritku ❤</p>
+            </div>
+            <div class="photo-card">
+                <img src="potoku.jpg" alt="Foto Lucu 2">
+                <p>Pas lagi ngambek tetep lucu..</p>
+            </div>
+        </section>
+
+        <section class="upload-section">
+            <h2>Kirim Foto Kamu ke Sini!</h2>
+            <p>Mau nambahin foto lucu lagi? Klik tombol di bawah ya:</p>
+            <a href="https://drive.google.com/drive/folders/1DvwYq49pcf64W0H1lnZhwh0ZU9j_LXAb" class="btn-upload" target="_blank">Upload Memori Baru 📸</a>
+        </section>
+    </main>
+
+    <footer>
+        Dibuat dengan ❤ sepenuhnya
+    </footer>
+
+    <script>
+        // Generate falling love animation
+        function createFallingLove() {
+            const love = document.createElement('div');
+            love.classList.add('falling-love');
+            love.textContent = '❤';
+
+            // Random horizontal position
+            const randomLeft = Math.random() * 100;
+            love.style.left = randomLeft + '%';
+
+            // Random animation duration (3-8 seconds)
+            const duration = Math.random() * 5 + 3;
+            love.style.animationDuration = duration + 's';
+
+            document.body.appendChild(love);
+
+            // Remove element after animation completes
+            setTimeout(() => {
+                love.remove();
+            }, duration * 1000);
+        }
+
+        // Create multiple falling loves on page load
+        window.addEventListener('load', () => {
+            // Create 20 hearts on initial load
+            for (let i = 0; i < 20; i++) {
+                setTimeout(() => {
+                    createFallingLove();
+                }, i * 150);
+            }
+        });
+    </script>
+
+</body>
+
+</html>
